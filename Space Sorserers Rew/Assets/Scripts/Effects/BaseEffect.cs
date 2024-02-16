@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class BaseEffect : MonoBehaviour
 {
-    [SerializeField] private float _time;
+    [SerializeField] protected float _time;
+    [SerializeField] protected EffectType _effectType;
     protected GameObject target;
 
     protected virtual void Awake()
     {
         target = gameObject.transform.parent.gameObject;
         EffectCollector.EffectCheck();
+        StartCoroutine(LifeTime());
     }
 
-    protected virtual void FixedUpdate()
+     protected IEnumerator LifeTime()
     {
-        _time -= Time.deltaTime;
-        if (_time <= 0)
-        {
-            Destroy(gameObject);
-        }
+        yield return new WaitForSeconds(_time+0.1f);
+        Destroy(gameObject);
     }
 }

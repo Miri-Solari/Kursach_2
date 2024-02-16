@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,27 +6,23 @@ using UnityEngine;
 public class Fire : BaseEffect
 {
     [SerializeField] private float dmg;
-    private BaseEnemy _targetEnemy;
+    private IFirable _target;
     private Damage _giving;
     protected override void Awake()
     {
-        _targetEnemy = target.GetComponent<BaseEnemy>();
+        base.Awake();
+        _effectType = EffectType.Fire;
+        _target = target.GetComponent<IFirable>();
         _giving = new Damage(pyro: dmg);
-        if (_targetEnemy != null)
+        if (_target != null)
         {
             InvokeRepeating(nameof(Firing), 0, 1f);
         }
         else Destroy(gameObject);
-        base.Awake();
-    }
-
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
     }
 
     private void Firing()
     {
-        _targetEnemy.TakeDamage(_giving);
+        _target.TakeDamage(_giving);
     }
 }
