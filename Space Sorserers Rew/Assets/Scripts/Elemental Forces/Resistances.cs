@@ -19,4 +19,13 @@ public struct Resistances
         };
     }
 
+    public static Resistances operator *(Resistances x, float y)
+    {
+        foreach (var dmg in x.Types)
+        {
+            x.Types[dmg.Key] *= y;
+        }
+        return x;
+    }
+
 }

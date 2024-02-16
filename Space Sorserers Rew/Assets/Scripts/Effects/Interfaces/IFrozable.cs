@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     internal interface IFrozable : ISlowable, IResistDebuffable
     {
-        public new void Froze(float sLowMulti, Dictionary<ElemType, float> resDeb)
+        public void Froze(float sLowMulti, Dictionary<ElemType, float> resDeb)
         {
             Slow(sLowMulti);
             ResistDebuff(resDeb);

@@ -33,5 +33,10 @@ public class ResistDebuff : BaseEffect
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
     }
 
+    public void ResistDurationMulti(float multi)
+    {
+        resistDuration *= multi;
+    }
+
 
 }

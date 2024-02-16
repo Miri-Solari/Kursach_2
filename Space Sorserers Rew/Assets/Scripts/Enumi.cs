@@ -6,6 +6,6 @@ public enum EffectType
 
 public enum ElemType
 {
-    Pyro, H2O, Kryo, Oxy, Geo, Aero, Mental
+    Pyro, H2O, Kryo, Oxy, Geo, Aero, Mental, Pure
 }
 

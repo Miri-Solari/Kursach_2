@@ -25,4 +25,9 @@ public class Slow : BaseEffect
         _target.SlowEnd();
     }
 
+    public void SlowDurationMulti(float multi)
+    {
+        slowDuration *= multi;
+    }
+
 }

@@ -7,7 +7,7 @@ namespace Assets.Scripts
     internal interface IResistDebuffable : IAffectable
     {
         Resistances StartResist { get; set; }
-        public new void ResistDebuff(Dictionary<ElemType, float> resDeb)
+        public void ResistDebuff(Dictionary<ElemType, float> resDeb)
         {
             StartResist = Resist;
             foreach (var res in resDeb)
@@ -18,7 +18,7 @@ namespace Assets.Scripts
                 }
                 else
                 {
-                    Debug.LogWarning("Не суй что попало");
+                    Debug.LogWarning("Не суй что попало в резисты");
                 }
             }
         }

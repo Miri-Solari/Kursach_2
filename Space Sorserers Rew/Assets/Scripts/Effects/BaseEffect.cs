@@ -20,4 +20,9 @@ public class BaseEffect : MonoBehaviour
         yield return new WaitForSeconds(_time+0.1f);
         Destroy(gameObject);
     }
+
+    public void MultipleTime(float y)
+    {
+        _time *= y;
+    }
 }
