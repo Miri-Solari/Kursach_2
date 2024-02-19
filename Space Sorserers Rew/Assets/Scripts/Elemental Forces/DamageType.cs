@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public struct Damage
 {
@@ -26,8 +27,10 @@ public struct Damage
         {
             foreach (var res in resistances.Types)
             {
-                s += Types[res.Key] * (1 - res.Value);
+                s += Types[res.Key] * (1 - res.Value/100);
+                
             }
+            
         }
         else
         {
@@ -38,11 +41,13 @@ public struct Damage
 
     public static Damage operator +(Damage x, Damage y)
     {
+        Damage result = new(pyro:0);
         if (x.Types[ElemType.Pure] == 0)
         {
+            
             foreach (var dmg in x.Types)
             {
-                x.Types[dmg.Key] += y.Types[dmg.Key];
+                result.Types[dmg.Key] = x.Types[dmg.Key] + y.Types[dmg.Key];
             }
         }
         else
@@ -50,20 +55,22 @@ public struct Damage
             foreach (var dmg in x.Types)
             {
                 if (dmg.Key != ElemType.Pure)
-                x.Types[dmg.Key] = 0;
+                result.Types[dmg.Key] = 0;
             }
+            result.Types[ElemType.Pure] = x.Types[ElemType.Pure];
         }
-        return x;
+        return result;
         
     }
 
     public static Damage operator *(Damage x, float y)
     {
+        Damage result = new(pyro: 0);
         foreach (var dmg in x.Types)
         {
-            x.Types[dmg.Key] *= y;
+            result.Types[dmg.Key] = x.Types[dmg.Key] * y;
         }
-        return x;
+        return result;
     }
 
 }

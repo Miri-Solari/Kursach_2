@@ -1,5 +1,7 @@
 ﻿
 
+
+using UnityEngine;
 namespace Assets.Scripts
 {
     internal interface IDamagable : IResistable
@@ -8,7 +10,8 @@ namespace Assets.Scripts
 
         public void TakeDamage(Damage dmg)
         {
-            HP -= HP -= dmg.DamageToHP(Resist);
+
+            HP -= dmg.DamageToHP(Resist);
         }
     }
 }

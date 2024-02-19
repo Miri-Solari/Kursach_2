@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseEffect : MonoBehaviour
 {
     [SerializeField] protected float _time;
-    [SerializeField] protected EffectType _effectType;
+    protected EffectType _effectType;
     protected GameObject target;
 
     protected virtual void Awake()

@@ -15,7 +15,7 @@ public class Geo : BaseElem
 
     public override (Damage, BaseEffect) InnLayer(ElemType midLayer, ElemType outLayer) // логика, когда внутренний слой
     {
-        Damage dmg = new();
+        Damage dmg = new(pyro:0);
         dmg.Types[_elemName] += DmgInn;
 
         switch ((outLayer, midLayer))

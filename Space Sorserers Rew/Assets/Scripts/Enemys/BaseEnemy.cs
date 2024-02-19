@@ -1,7 +1,6 @@
 using Assets.Scripts;
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour, IDamagable, IFirable, ISlowable, IResistDebuffable, IStunable, IWetable, IFrozable // восприятие эффектов и получение урона в лицо
@@ -18,7 +17,7 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IFirable, ISlowable, IResist
     }
     [SerializeField] Res[] _resistanceArray;
 
-    private Resistances _resistances;
+    private Resistances _resistances = new Resistances(pyro:1);
     private float _startSpeed;
     private Resistances _startResist;
     
@@ -31,11 +30,22 @@ public class BaseEnemy : MonoBehaviour, IDamagable, IFirable, ISlowable, IResist
 
     protected virtual void Awake()
     {
-        
         foreach (var res in _resistanceArray)
         {
+            //Debug.Log($"{res.name} {res.value} {_resistances.Types[ElemType.Pyro]}");
             _resistances.Types[res.name] = res.value;
         }
     }
+
+    private void Update()
+    {
+        if(HP < 0)
+        {
+            //Destroy(gameObject);
+        }
+    }
+
+
+
 
 }

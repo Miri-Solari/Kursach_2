@@ -21,11 +21,12 @@ public struct Resistances
 
     public static Resistances operator *(Resistances x, float y)
     {
-        foreach (var dmg in x.Types)
+        Resistances result = new(pyro:0) ;
+        foreach(var dmg in x.Types)
         {
-            x.Types[dmg.Key] *= y;
+            result.Types[dmg.Key] = x.Types[dmg.Key] * y;
         }
-        return x;
+        return result;
     }
 
 }

@@ -6,7 +6,7 @@ public class CameraTracker : MonoBehaviour
 
     private void Update()
     {
-        //canvas.transform.LookAt(Camera.main.transform.position);
+        //canvas.transform.LookAt(Camera.main.transform.position); Quaternion.LookRotation(canvas.transform.position - Camera.main.transform.position);
         canvas.transform.rotation = Quaternion.LookRotation(canvas.transform.position - Camera.main.transform.position);
     }
 
