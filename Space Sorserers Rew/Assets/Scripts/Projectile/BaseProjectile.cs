@@ -1,7 +1,5 @@
 using Assets.Scripts.Projectile;
 using System.Collections;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BaseProjectile : MonoBehaviour, IProjectile
