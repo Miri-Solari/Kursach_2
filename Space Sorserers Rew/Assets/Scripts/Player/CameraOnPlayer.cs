@@ -31,7 +31,7 @@ public class CameraOnPlayer : MonoBehaviour
         while (true)
         {
 
-            smooth = Vector3.Lerp(transform.position, target.position - offset, speed / tickRate);
+            smooth = Vector3.Lerp(transform.position, target.position - offset, speed);
             smooth = MouseTrack(smooth);
             transform.position = smooth;
             yield return TickRateTime;
@@ -41,15 +41,12 @@ public class CameraOnPlayer : MonoBehaviour
     private Vector3 MouseTrack(Vector3 Changed)
     {
         mousePos = Input.mousePosition;
-        if (mousePos.x > 0 && mousePos.y > 0 && mousePos.y < Screen.height && mousePos.x < Screen.width)
-        {
-            crosshairTracker.GunRotator(mousePos);
-            mousePos.x *= xBorderPos/Screen.width;
-            mousePos.y *= zBorderPos/Screen.height;
-            mousePos -= 0.5f * (Vector3.right * xBorderPos + Vector3.up * zBorderPos);
-            Changed.x += mousePos.x;
-            Changed.z += mousePos.y;
-        }
+        crosshairTracker.GunRotator(mousePos);
+        mousePos.x *= xBorderPos / Screen.width;
+        mousePos.y *= zBorderPos / Screen.height;
+        mousePos -= 0.5f * (Vector3.right * xBorderPos + Vector3.up * zBorderPos);
+        Changed.x += mousePos.x;
+        Changed.z += mousePos.y;
 
         return Changed;
     }

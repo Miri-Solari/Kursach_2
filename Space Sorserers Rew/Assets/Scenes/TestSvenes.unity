@@ -787,10 +787,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 446754392}
-  speed: 10
+  speed: 1
   tickRate: 64
-  xBorderPos: 1.25
-  zBorderPos: 0.75
+  xBorderPos: 6
+  zBorderPos: 4
   crosshairTracker: {fileID: 446754395}
 --- !u!1 &1091581762
 GameObject:
@@ -925,6 +925,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 446754395, guid: b681993870b028348af484add58f2763, type: 3}
+      propertyPath: transAngleMax
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 668461466153397738, guid: b681993870b028348af484add58f2763, type: 3}
       propertyPath: m_Name
       value: Base Sprite
