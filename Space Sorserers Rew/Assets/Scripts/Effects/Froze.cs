@@ -5,13 +5,13 @@ public class Froze: BaseEffect
 {
     [SerializeField] private float slowDuration;
     [SerializeField] private float resistDuration;
-    private IFrozable _target;
+    private IFreezable _target;
 
     protected override void Awake()
     {
         base.Awake();
         _effectType = EffectType.Froze;
-        _target = target.GetComponent<IFrozable>();
+        _target = target.GetComponent<IFreezable>();
         Resistances temp = new();
         temp.Types[ElemType.Pyro] = resistDuration + 1;
         temp.Types[ElemType.Geo] = resistDuration;

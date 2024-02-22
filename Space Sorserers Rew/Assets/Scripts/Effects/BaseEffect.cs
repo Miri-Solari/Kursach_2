@@ -4,13 +4,14 @@ using UnityEngine;
 public class BaseEffect : MonoBehaviour
 {
     [SerializeField] protected float _time;
-    protected EffectType _effectType;
+    public EffectType _effectType { get; protected set; }
     protected GameObject target;
+
 
     protected virtual void Awake()
     {
         target = gameObject.transform.parent.gameObject;
-        EffectCollector.EffectCheck();
+        if (EffectCollector.Instance != null ) EffectCollector.Instance.EffectCheck(this);
         StartCoroutine(LifeTime());
     }
 
@@ -24,4 +25,6 @@ public class BaseEffect : MonoBehaviour
     {
         _time *= y;
     }
+
+
 }

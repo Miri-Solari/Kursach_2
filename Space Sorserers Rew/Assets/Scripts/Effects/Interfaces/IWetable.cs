@@ -8,16 +8,23 @@ namespace Assets.Scripts
 {
     internal interface IWetable : ISlowable, IResistDebuffable
     {
+        public bool IsWetable { get; set; }
         public void Wet(float sLowMulti, Dictionary<ElemType, float> resDeb)
         {
-            Slow(sLowMulti);
-            ResistDebuff(resDeb);
+            if (IsWetable)
+            {
+                Slow(sLowMulti);
+                ResistDebuff(resDeb);
+            }
         }
 
         public void WetEnd()
         {
-            SlowEnd();
-            ResistDebuffEnd();
+            if (IsWetable)
+            {
+                SlowEnd();
+                ResistDebuffEnd();
+            }
         }
     }
 }

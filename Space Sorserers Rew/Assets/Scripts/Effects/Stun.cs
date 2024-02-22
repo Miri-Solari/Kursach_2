@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class Stun : BaseEffect
 {
-    private IStunable _target;
+    private IStunnable _target;
 
 
     protected override void Awake()
     {
         base.Awake();
         _effectType = EffectType.Stun;
-        _target = target.GetComponent<IStunable>();
+        _target = target.GetComponent<IStunnable>();
         _target.Stun();
         StartCoroutine(StunEnd());
     }

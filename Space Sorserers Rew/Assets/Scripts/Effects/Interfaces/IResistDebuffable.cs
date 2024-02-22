@@ -6,25 +6,30 @@ namespace Assets.Scripts
 {
     internal interface IResistDebuffable : IAffectable
     {
+        public bool IsResistDebuffable { get; set; }
         Resistances StartResist { get; set; }
         public void ResistDebuff(Dictionary<ElemType, float> resDeb)
         {
-            StartResist = Resist;
-            foreach (var res in resDeb)
+            if (IsResistDebuffable)
             {
-                if (Resist.Types.ContainsKey(res.Key))
+                StartResist = Resist;
+                foreach (var res in resDeb)
                 {
-                    Resist.Types[res.Key] = Resist.Types[res.Key] * (1 - res.Value);
-                }
-                else
-                {
-                    Debug.LogWarning("Не суй что попало в резисты");
+                    if (Resist.Types.ContainsKey(res.Key))
+                    {
+                        Resist.Types[res.Key] = Resist.Types[res.Key] * (1 - res.Value);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Не суй что попало в резисты");
+                    }
                 }
             }
         }
 
         public void ResistDebuffEnd()
         {
+            if (IsResistDebuffable)
             Resist = StartResist;
         }
     }

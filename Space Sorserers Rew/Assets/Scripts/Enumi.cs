@@ -9,3 +9,12 @@ public enum ElemType
     Pyro, H2O, Kryo, Oxy, Geo, Aero, Mental, Pure
 }
 
+public enum SlotsState
+{
+    MouseTrack, MouseHover, Chill
+}
+
+public enum ItemType
+{
+    Elem, Head, Body, Legs, Hand, Boots, GunHead, GunMod, All
+}

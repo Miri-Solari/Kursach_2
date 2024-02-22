@@ -24,7 +24,7 @@ namespace Assets.Scripts.Projectile
 
         public virtual void Trigger(Collision target)
         {
-            if (target.gameObject.GetComponent<BaseEnemy>() != null)
+            if (target.gameObject.GetComponent<BaseUnit>() != null)
             {
                
                 MonoBehaviour.Instantiate(ContainEffect, target.transform);

@@ -41,13 +41,13 @@ public class CrosshairTracker : MonoBehaviour
                 temp = -temp;
             }
             if (transform.rotation.eulerAngles.y * Quaternion.FromToRotation(Vector3.right, temp).eulerAngles.y < 0) temp = -temp;
-            Debug.Log($"по темпу {point}     {mousePos}        {temp}");
+            
             transform.rotation = Quaternion.FromToRotation(Vector3.right, temp);
         }
         else
         {
             if (transform.rotation.eulerAngles.y * Quaternion.FromToRotation(Vector3.right, mousePos).eulerAngles.y < 0) mousePos = -mousePos;
-            Debug.Log($"по позиции мыши   {point}     {mousePos}        {temp}");
+            
             transform.rotation = Quaternion.FromToRotation(Vector3.right, mousePos);
         }
 
