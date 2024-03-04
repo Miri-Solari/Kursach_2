@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Slot : MonoBehaviour
 {
     public bool IsFilled { get; private set; } = false;
-    [SerializeField] public ItemType ItemType { get; private set; } = ItemType.All;
+    [SerializeField] private ItemType _itemType = ItemType.All;
+    public ItemType ItemType { get => _itemType; private set => _itemType = value; }
 
     private void Awake()
     {
@@ -22,5 +24,15 @@ public class Slot : MonoBehaviour
         IsFilled = false;
     }
 
+
+    public bool CheckForAccordance(ItemType item)
+    {
+        if (ItemType == ItemType.All)
+        {
+            return true;
+        }
+        else
+            return ItemType == item;
+    }
 
 }

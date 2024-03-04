@@ -15,7 +15,7 @@ public class BaseEffect : MonoBehaviour
         StartCoroutine(LifeTime());
     }
 
-     protected IEnumerator LifeTime()
+    protected IEnumerator LifeTime()
     {
         yield return new WaitForSeconds(_time+0.1f);
         Destroy(gameObject);
@@ -28,3 +28,5 @@ public class BaseEffect : MonoBehaviour
 
 
 }
+
+
