@@ -31,7 +31,7 @@ public class SlotsItem : MonoBehaviour, IClickable
             var temp = item.gameObject.GetComponent<Slot>();
             if (temp != null)
             {
-                if (!temp.IsFilled && temp.CheckForAccordance(_itemType))
+                if (!temp.IsFilled && temp.ItemType == _itemType)
                 {
                     transform.parent.GetComponent<Slot>().Clear();
                     transform.SetParent(item.gameObject.transform, false);

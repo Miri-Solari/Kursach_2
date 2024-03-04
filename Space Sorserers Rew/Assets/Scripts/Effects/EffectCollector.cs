@@ -17,6 +17,7 @@ public class EffectCollector : MonoBehaviour
     }
     public void EffectCheck(BaseEffect effect)
     {
+        
         Check(effect);
     }
 
