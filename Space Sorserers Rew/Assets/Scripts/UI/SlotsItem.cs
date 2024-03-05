@@ -33,6 +33,10 @@ public class SlotsItem : MonoBehaviour, IClickable
             {
                 if (!temp.IsFilled && temp.ItemType == _itemType)
                 {
+                    if(item.gameObject.GetComponent<Slot>().ItemType == ItemType.Elem || transform.parent.GetComponent<Slot>().ItemType == ItemType.Elem)
+                    {
+                        Inventory.Instance.SlotIsChange();
+                    }
                     transform.parent.GetComponent<Slot>().Clear();
                     transform.SetParent(item.gameObject.transform, false);
                     transform.localPosition = -_offset;
@@ -69,7 +73,6 @@ public class SlotsItem : MonoBehaviour, IClickable
         }
     }
 
-    // Start is called before the first frame update
     void Awake()
     {
         _state = SlotsState.Chill;

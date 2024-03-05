@@ -103,6 +103,33 @@ public class Oxy : BaseElem
 
                 break;
 
+            case (ElemType.Null, ElemType.Pyro):
+                dmg.Types[ElemType.Oxy] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.H2O):
+                dmg.Types[ElemType.Oxy] *= DmgMultiX2;
+                Effect.MultipleTime(EffectTimeMultiX2);
+                break;
+
+            case (ElemType.Null, ElemType.Kryo):
+                dmg.Types[ElemType.Oxy] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.Geo):
+                dmg.Types[ElemType.Oxy] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.Null):
+                dmg.Types[_elemName] *= DmgMultiX2;
+                break;
+
+            default:
+                Debug.Log("CantFire");
+                dmg.Types[_elemName] = 0;
+                Effect = null;
+                break;
+
         }
         Effect = _resistDebuff;
         return (dmg, Effect);

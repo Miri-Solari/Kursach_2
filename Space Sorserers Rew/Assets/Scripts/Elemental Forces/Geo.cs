@@ -108,6 +108,34 @@ public class Geo : BaseElem
                 _slow.MultipleTime(EffectTimeMultiX2); 
                 break;
 
+            case (ElemType.Null, ElemType.Pyro):
+                dmg.Types[ElemType.Pure] = DmgMid * DmgMultiX3 - DmgInn;
+                break;
+
+            case (ElemType.Null, ElemType.H2O):
+                dmg.Types[ElemType.Geo] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.Kryo):
+                dmg.Types[ElemType.Pure] = DmgMid * DmgMultiX2;
+                Effect = stun;
+                break;
+
+            case (ElemType.Null, ElemType.Geo):
+                dmg.Types[ElemType.Geo] *= DmgMultiX2;
+                Effect = stun;
+                break;
+
+            case (ElemType.Null, ElemType.Null):
+                dmg.Types[_elemName] *= DmgMultiX2;
+                break;
+
+            default:
+                Debug.Log("CantFire");
+                dmg.Types[_elemName] = 0;
+                Effect = null;
+                break;
+
         }
         Effect = _slow;
         return (dmg, Effect);

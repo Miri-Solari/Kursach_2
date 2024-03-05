@@ -6,7 +6,7 @@ public enum EffectType
 
 public enum ElemType
 {
-    Pyro, H2O, Kryo, Oxy, Geo, Aero, Mental, Pure
+    Pyro, H2O, Kryo, Oxy, Geo, Aero, Mental, Pure, Null
 }
 
 public enum SlotsState

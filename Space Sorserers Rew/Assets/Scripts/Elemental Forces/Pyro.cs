@@ -26,7 +26,7 @@ public class Pyro : BaseElem
                 break;
 
             case (ElemType.Pyro, ElemType.Geo):
-                Effect.MultipleTime(EffectTimeMultiX3);
+                Effect.MultipleTime(EffectTimeMultiX2);
                 break;
 
             case (ElemType.Pyro, ElemType.Aero):
@@ -48,6 +48,24 @@ public class Pyro : BaseElem
 
             case (ElemType.Geo, ElemType.Aero):
                 Effect.MultipleTime(EffectTimeMultiX2);
+                break;
+
+            case (ElemType.Null,  ElemType.Pyro):
+                dmg.Types[ElemType.Pyro] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.Geo):
+                dmg.Types[ElemType.Pure] = DmgMid*DmgMultiX3 - DmgInn;
+                break;
+
+            case (ElemType.Null, ElemType.Null):
+
+                break;
+
+            default:
+                Debug.Log("CantFire");
+                dmg.Types[_elemName] = 0;
+                Effect = null;
                 break;
         }
         return (dmg, Effect);

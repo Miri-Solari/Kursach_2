@@ -1,11 +1,8 @@
 using Assets.Scripts.Projectile;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseGun : MonoBehaviour
 {
-    public Inventory inventar; // ВРЕМЕННО
     [SerializeField] protected Transform shootPoint;
 
     [SerializeField] protected GameObject projectilePrefab;
@@ -13,9 +10,9 @@ public class BaseGun : MonoBehaviour
     protected BaseElem midLayer;
     protected BaseElem innLayer;
     protected (Damage, BaseEffect) damageEffectContainer;
-    protected virtual void Awake() // стреляет
+    public virtual void Subscription() // стреляет
     {
-        ChangeElem(inventar);
+        Inventory.Instance.SlotsChange += ChangeElem;
     }
 
 
@@ -26,6 +23,11 @@ public class BaseGun : MonoBehaviour
             OpenFire();
         }
             
+    }
+
+    protected virtual void OnDisable()
+    {
+        Inventory.Instance.SlotsChange -= ChangeElem;
     }
 
 
@@ -39,14 +41,24 @@ public class BaseGun : MonoBehaviour
         temp.GetComponent<IProjectile>().ContainDamage = damageEffectContainer.Item1;
     }
 
-    public void ChangeElem(Inventory inventory)
+
+
+    public void ChangeElem(Inventory inventory) // ????? может переписать, но пока не знаю как
     {
-        GameObject[] temp = inventory.GetSlots();
-        outLayer = temp[0].GetComponent<BaseElem>();
-        midLayer = temp[1].GetComponent<BaseElem>();
-        innLayer = temp[2].GetComponent<BaseElem>();
-        damageEffectContainer = innLayer.InnLayer(ElemType.Pyro, ElemType.Pyro);
-        damageEffectContainer.Item1 += midLayer.MidLayer();
-        damageEffectContainer.Item1 += outLayer.OutLayer();
+        ElemType midElemContainer = ElemType.Null;
+        ElemType outElemContainer = ElemType.Null;
+        ElemContainer temp = inventory.GetSlots();
+        outLayer = temp.GetOutLayer();
+        midLayer = temp.GetMidLayer();
+        innLayer = temp.GetInnLayer();
+        if (midLayer != null)
+            midElemContainer = midLayer._elemName;
+        if (outLayer != null)
+            outElemContainer = outLayer._elemName;
+        damageEffectContainer = innLayer.InnLayer(midElemContainer, outElemContainer);
+        if (midLayer != null) damageEffectContainer.Item1 += midLayer.MidLayer();
+        if (outLayer!= null) damageEffectContainer.Item1 += outLayer.OutLayer();
     }
+
+
 }

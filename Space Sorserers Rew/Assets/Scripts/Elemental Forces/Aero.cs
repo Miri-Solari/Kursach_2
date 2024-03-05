@@ -109,6 +109,33 @@ public class Aero : BaseElem
 
                 break;
 
+            case (ElemType.Null, ElemType.Pyro):
+                dmg.Types[ElemType.Aero] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.H2O):
+                dmg.Types[ElemType.Aero] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.Kryo):
+                dmg.Types[ElemType.Aero] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.Geo):
+                dmg.Types[ElemType.Aero] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.Null):
+                dmg.Types[_elemName] *= DmgMultiX2;
+                break;
+
+            default:
+                Debug.Log("CantFire");
+                dmg.Types[_elemName] = 0;
+                Effect = null;
+                break;
+
+
         }
         return (dmg, Effect);
     }

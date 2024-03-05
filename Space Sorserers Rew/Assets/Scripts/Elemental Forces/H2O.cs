@@ -86,6 +86,31 @@ public class H2O : BaseElem
                 dmg.Types[ElemType.Aero] += 0.5f * DmgInn;
                 break;
 
+
+            case (ElemType.Null, ElemType.H2O):
+                dmg.Types[ElemType.H2O] *= DmgMultiX2;
+                Effect.MultipleTime(EffectTimeMultiX2);
+                break;
+
+            case (ElemType.Null, ElemType.Kryo):
+                dmg.Types[ElemType.H2O] *= DmgMultiX2;
+                Effect.MultipleTime(EffectTimeMultiX2);
+                break;
+
+            case (ElemType.Null, ElemType.Geo):
+                dmg.Types[ElemType.H2O] *= DmgMultiX2;
+                Effect.MultipleTime(EffectTimeMultiX2);
+                break;
+
+            case (ElemType.Null, ElemType.Null):
+                dmg.Types[_elemName] *= DmgMultiX2;
+                break;
+
+            default:
+                Debug.Log("CantFire");
+                dmg.Types[_elemName] = 0;
+                Effect = null;
+                break;
         }
         return (dmg, Effect);
     }

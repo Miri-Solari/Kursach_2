@@ -83,6 +83,32 @@ public class Kryo : BaseElem
                 
                 break;
 
+
+            case (ElemType.Null, ElemType.H2O):
+                dmg.Types[ElemType.Kryo] *= DmgMultiX2;
+                break;
+
+            case (ElemType.Null, ElemType.Kryo):
+                dmg.Types[ElemType.Kryo] *= DmgMultiX2;
+                Effect = stun;
+                Effect.MultipleTime(EffectTimeMultiX2);
+                break;
+
+            case (ElemType.Null, ElemType.Geo):
+                dmg.Types[ElemType.Kryo] *= DmgMultiX2;
+
+                break;
+
+            case (ElemType.Null, ElemType.Null):
+                dmg.Types[_elemName] *= DmgMultiX2;
+                break;
+
+            default:
+                Debug.Log("CantFire");
+                dmg.Types[_elemName] = 0;
+                Effect = null;
+                break;
+
         }
         return (dmg, Effect);
     }
