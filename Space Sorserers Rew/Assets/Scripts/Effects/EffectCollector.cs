@@ -1,24 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class EffectCollector : MonoBehaviour
+public class EffectCollector
 {
-    public static EffectCollector Instance;
     private BaseEffect[] _effects;
 
     // Логика стака эффектов
-    private void Awake()
+    public EffectCollector()
     {
-        if (Instance == null) Instance = this;
         _effects = new BaseEffect[1];
-        
     }
     public void EffectCheck(BaseEffect effect)
     {
         
-        Check(effect);
+       Check(effect);
     }
 
     private void Check(BaseEffect effect)
@@ -35,7 +30,7 @@ public class EffectCollector : MonoBehaviour
                 Debug.Log($"{x}     {_effects.Length} {_effects[x]}");
                 if (_effects[x]._effectType == curr)
                 {
-                    Destroy(_effects[x].gameObject, 0.01f);
+                    MonoBehaviour.Destroy(_effects[x].gameObject, 0.01f);
                     _effects[x] = effect;
                 }
                 else

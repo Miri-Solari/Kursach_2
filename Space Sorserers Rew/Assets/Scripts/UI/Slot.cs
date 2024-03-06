@@ -5,7 +5,7 @@ using UnityEngine;
 public class Slot : MonoBehaviour
 {
     public bool IsFilled { get; private set; } = false;
-    [SerializeField] public ItemType ItemType { get; private set; } = ItemType.All;
+    public ItemType ItemType = ItemType.All;
 
     private void Awake()
     {
@@ -21,6 +21,15 @@ public class Slot : MonoBehaviour
     {
         IsFilled = false;
     }
+    
 
+    public bool CanPutInto(ItemType other)
+    {
+        if (ItemType == ItemType.All)
+        {
+            return true;
+        }
+        return ItemType == other;
+    }
 
 }

@@ -16,12 +16,12 @@ public class Geo : BaseElem
     public override (Damage, BaseEffect) InnLayer(ElemType midLayer, ElemType outLayer) // логика, когда внутренний слой
     {
         Damage dmg = new(pyro:0);
-        dmg.Types[_elemName] += DmgInn;
+        dmg.Types[_elemName] += dmgInn;
 
         switch ((outLayer, midLayer))
         {
             case (ElemType.Pyro, ElemType.Pyro):
-                dmg.Types[ElemType.Pure] = (DmgMid + DmgOut) * DmgMultiX3;
+                dmg.Types[ElemType.Pure] = (dmgMid + dmgOut) * dmgMultiX3;
                 _slow.MultipleTime(0f);
                 break;
 
@@ -39,7 +39,7 @@ public class Geo : BaseElem
 
             case (ElemType.Geo, ElemType.Pyro):
                 _slow.MultipleTime(0f);
-                dmg.Types[ElemType.Pyro] += DmgInn;
+                dmg.Types[ElemType.Pyro] += dmgInn;
                 break;
 
             case (ElemType.Geo, ElemType.Oxy):
@@ -47,23 +47,23 @@ public class Geo : BaseElem
                 break; 
 
             case (ElemType.Geo, ElemType.Geo):
-                dmg.Types[ElemType.Geo] += DmgInn;
+                dmg.Types[ElemType.Geo] += dmgInn;
                 _slow.SlowDurationMulti(_slowDurationMultiX3);
-                _slow.MultipleTime(EffectTimeMultiX3);
+                _slow.MultipleTime(effectTimeMultiX3);
                 break;
 
             case (ElemType.Geo, ElemType.Aero):
-                _slow.MultipleTime(EffectTimeMultiX2); 
+                _slow.MultipleTime(effectTimeMultiX2); 
                 break;
 
             case (ElemType.H2O, ElemType.H2O):
-                _slow.MultipleTime(EffectTimeMultiX3);
+                _slow.MultipleTime(effectTimeMultiX3);
                 _slow.SlowDurationMulti(_slowDurationMultiWet);
                 break;
 
             case (ElemType.H2O, ElemType.Kryo):
-                dmg.Types[ElemType.Kryo] += 0.5f * DmgInn;
-                _slow.MultipleTime(EffectTimeMultiX2);
+                dmg.Types[ElemType.Kryo] += 0.5f * dmgInn;
+                _slow.MultipleTime(effectTimeMultiX2);
                 _slow.SlowDurationMulti(_slowDurationMultiWet);
                 break;
 
@@ -72,15 +72,15 @@ public class Geo : BaseElem
                 break;
 
             case (ElemType.H2O, ElemType.Geo): 
-                _slow.MultipleTime(EffectTimeMultiX2);
+                _slow.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.H2O, ElemType.Aero):
-                dmg.Types[ElemType.Aero] += 0.5f * DmgInn; 
+                dmg.Types[ElemType.Aero] += 0.5f * dmgInn; 
                 break;
 
             case (ElemType.Kryo, ElemType.H2O):
-                dmg.Types[ElemType.Kryo] += DmgInn; 
+                dmg.Types[ElemType.Kryo] += dmgInn; 
                 break;
 
             case (ElemType.Kryo, ElemType.Kryo):
@@ -88,12 +88,12 @@ public class Geo : BaseElem
                 break;
 
             case (ElemType.Kryo, ElemType.Oxy):
-                _slow.MultipleTime(EffectTimeMultiX2);
+                _slow.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Kryo, ElemType.Geo):
                 _slow.SlowDurationMulti(_slowDurationMultiX3);
-                _slow.MultipleTime(EffectTimeMultiX2);
+                _slow.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Kryo, ElemType.Aero):
@@ -101,44 +101,44 @@ public class Geo : BaseElem
                 break;
 
             case (ElemType.Geo, ElemType.H2O):
-                _slow.MultipleTime(EffectTimeMultiX2);
+                _slow.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Geo, ElemType.Kryo):
-                _slow.MultipleTime(EffectTimeMultiX2); 
+                _slow.MultipleTime(effectTimeMultiX2); 
                 break;
 
             case (ElemType.Null, ElemType.Pyro):
-                dmg.Types[ElemType.Pure] = DmgMid * DmgMultiX3 - DmgInn;
+                dmg.Types[ElemType.Pure] = dmgMid * dmgMultiX3 - dmgInn;
                 break;
 
             case (ElemType.Null, ElemType.H2O):
-                dmg.Types[ElemType.Geo] *= DmgMultiX2;
+                dmg.Types[ElemType.Geo] *= dmgMultiX2;
                 break;
 
             case (ElemType.Null, ElemType.Kryo):
-                dmg.Types[ElemType.Pure] = DmgMid * DmgMultiX2;
-                Effect = stun;
+                dmg.Types[ElemType.Pure] = dmgMid * dmgMultiX2;
+                effect = stun;
                 break;
 
             case (ElemType.Null, ElemType.Geo):
-                dmg.Types[ElemType.Geo] *= DmgMultiX2;
-                Effect = stun;
+                dmg.Types[ElemType.Geo] *= dmgMultiX2;
+                effect = stun;
                 break;
 
             case (ElemType.Null, ElemType.Null):
-                dmg.Types[_elemName] *= DmgMultiX2;
+                dmg.Types[_elemName] *= dmgMultiX2;
                 break;
 
             default:
                 Debug.Log("CantFire");
                 dmg.Types[_elemName] = 0;
-                Effect = null;
+                effect = null;
                 break;
 
         }
-        Effect = _slow;
-        return (dmg, Effect);
+        effect = _slow;
+        return (dmg, effect);
     }
 
     

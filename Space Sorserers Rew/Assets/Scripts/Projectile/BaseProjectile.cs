@@ -19,9 +19,10 @@ public class BaseProjectile : MonoBehaviour, IProjectile
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        
         ProjectileInterface.Trigger(collision);
-        currentSpeed = 0f;
-        Debug.Log(ContainDamage.Types[ElemType.Pyro]) ;
+
+        Destroy(gameObject);
 
     }
 

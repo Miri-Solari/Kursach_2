@@ -14,10 +14,9 @@ public class MovementControl : MonoBehaviour
         direct.x = Input.GetAxis("Horizontal");
         direct.z = Input.GetAxis("Vertical");
         
-        if (direct.x != 0 || direct.z != 0)
-        {
-            Move(direct.normalized);
-        }
+        
+        Move(direct.normalized);
+        
     }
 
     private void Move(Vector3 direct)

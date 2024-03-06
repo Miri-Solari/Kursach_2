@@ -13,33 +13,33 @@ public class Pyro : BaseElem
     public override (Damage, BaseEffect) InnLayer(ElemType midLayer, ElemType outLayer) // логика, когда внутренний слой
     {
         Damage dmg = new(pyro:0);
-        dmg.Types[_elemName] += DmgInn;
+        dmg.Types[_elemName] += dmgInn;
         switch ((outLayer, midLayer))
         {
             case (ElemType.Pyro, ElemType.Pyro):
-                Effect.MultipleTime(EffectTimeMultiX3);
-                dmg.Types[ElemType.Pyro] *= DmgMultiX3;
+                effect.MultipleTime(effectTimeMultiX3);
+                dmg.Types[ElemType.Pyro] *= dmgMultiX3;
                 break;
 
             case (ElemType.Pyro, ElemType.Oxy):
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Pyro, ElemType.Geo):
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Pyro, ElemType.Aero):
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Geo, ElemType.Pyro):
-                Effect.MultipleTime(EffectTimeMultiX2);
-                dmg.Types[ElemType.Pure] = DmgMultiX3*DmgOut;
+                effect.MultipleTime(effectTimeMultiX2);
+                dmg.Types[ElemType.Pure] = dmgMultiX3*dmgOut;
                 break;
 
             case (ElemType.Geo, ElemType.Oxy):
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Geo, ElemType.Geo):
@@ -47,15 +47,15 @@ public class Pyro : BaseElem
                 break;
 
             case (ElemType.Geo, ElemType.Aero):
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Null,  ElemType.Pyro):
-                dmg.Types[ElemType.Pyro] *= DmgMultiX2;
+                dmg.Types[ElemType.Pyro] *= dmgMultiX2;
                 break;
 
             case (ElemType.Null, ElemType.Geo):
-                dmg.Types[ElemType.Pure] = DmgMid*DmgMultiX3 - DmgInn;
+                dmg.Types[ElemType.Pure] = dmgMid*dmgMultiX3 - dmgInn;
                 break;
 
             case (ElemType.Null, ElemType.Null):
@@ -65,10 +65,11 @@ public class Pyro : BaseElem
             default:
                 Debug.Log("CantFire");
                 dmg.Types[_elemName] = 0;
-                Effect = null;
+                effect = null;
                 break;
         }
-        return (dmg, Effect);
+        Debug.Log(effect.ToString());
+        return (dmg, effect);
     }
 
     

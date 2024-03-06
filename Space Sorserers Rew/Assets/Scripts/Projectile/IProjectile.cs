@@ -26,8 +26,11 @@ namespace Assets.Scripts.Projectile
         {
             if (target.gameObject.GetComponent<BaseUnit>() != null)
             {
-               
-                MonoBehaviour.Instantiate(ContainEffect, target.transform);
+                if (ContainEffect != null)
+                {
+                    //Debug.Log("aaaaaa");
+                    MonoBehaviour.Instantiate(ContainEffect, target.transform);
+                }
                 target.gameObject.GetComponent<IDamagable>().TakeDamage(ContainDamage);
             }
         }

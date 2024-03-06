@@ -264,11 +264,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stun: {fileID: 2915134913281038120, guid: cdb3888686fade74c885cfc98cfb820c, type: 3}
-  DmgInn: 1
-  DmgMid: 1
-  DmgOut: 1
-  EffectTimeMultiX2: 1
-  EffectTimeMultiX3: 2
-  DmgMultiX2: 1
-  DmgMultiX3: 5
-  Effect: {fileID: 6583762008772752010, guid: 06b459fe2ad72fc4e8d3f3855db900a3, type: 3}
+  dmgInn: 0
+  dmgMid: 0
+  dmgOut: 0
+  effectTimeMultiX2: 0
+  effectTimeMultiX3: 0
+  dmgMultiX2: 0
+  dmgMultiX3: 0
+  effect: {fileID: 6583762008772752010, guid: 06b459fe2ad72fc4e8d3f3855db900a3, type: 3}

@@ -13,33 +13,33 @@ public class Aero : BaseElem
     public override (Damage, BaseEffect) InnLayer(ElemType midLayer, ElemType outLayer) // логика, когда внутренний слой
     {
         Damage dmg = new(pyro: 0);
-        dmg.Types[_elemName] += DmgInn;
+        dmg.Types[_elemName] += dmgInn;
 
         switch ((outLayer, midLayer))
         {
             case (ElemType.Pyro, ElemType.Pyro):
-                dmg.Types[ElemType.Pyro] += 0.5f * DmgInn;
+                dmg.Types[ElemType.Pyro] += 0.5f * dmgInn;
                 break;
 
             case (ElemType.Pyro, ElemType.Oxy):
-                Effect = stun;
+                effect = stun;
                 break;
 
             case (ElemType.Pyro, ElemType.Geo):
-                dmg.Types[ElemType.Pyro] += 1.5f * DmgInn;
+                dmg.Types[ElemType.Pyro] += 1.5f * dmgInn;
                 break;
 
             case (ElemType.Pyro, ElemType.Aero):
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Geo, ElemType.Pyro):
 
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Geo, ElemType.Oxy):
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Geo, ElemType.Geo):
@@ -47,23 +47,23 @@ public class Aero : BaseElem
                 break;
 
             case (ElemType.Geo, ElemType.Aero):
-                Effect.MultipleTime(EffectTimeMultiX3);
+                effect.MultipleTime(effectTimeMultiX3);
                 break;
 
             case (ElemType.H2O, ElemType.H2O):
-                dmg.Types[ElemType.Aero] += 0.5f * DmgInn;
-                Effect = stun;
-                Effect.MultipleTime(EffectTimeMultiX2);
+                dmg.Types[ElemType.Aero] += 0.5f * dmgInn;
+                effect = stun;
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.H2O, ElemType.Kryo):
-                dmg.Types[ElemType.Kryo] += 0.5f * DmgInn;
-                dmg.Types[ElemType.Aero] += 0.5f * DmgInn;
-                Effect = stun;
+                dmg.Types[ElemType.Kryo] += 0.5f * dmgInn;
+                dmg.Types[ElemType.Aero] += 0.5f * dmgInn;
+                effect = stun;
                 break;
 
             case (ElemType.H2O, ElemType.Oxy):
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.H2O, ElemType.Geo):
@@ -71,16 +71,16 @@ public class Aero : BaseElem
                 break;
 
             case (ElemType.H2O, ElemType.Aero):
-                dmg.Types[ElemType.Aero] += DmgMultiX3 * DmgInn;
-                Effect = stun;
-                Effect.MultipleTime(EffectTimeMultiX3);
+                dmg.Types[ElemType.Aero] += dmgMultiX3 * dmgInn;
+                effect = stun;
+                effect.MultipleTime(effectTimeMultiX3);
                 break;
 
             case (ElemType.Kryo, ElemType.H2O):
-                dmg.Types[ElemType.Kryo] += DmgInn;
-                dmg.Types[ElemType.Aero] += 0.5f * DmgInn;
-                Effect = stun;
-                Effect.MultipleTime(EffectTimeMultiX3);
+                dmg.Types[ElemType.Kryo] += dmgInn;
+                dmg.Types[ElemType.Aero] += 0.5f * dmgInn;
+                effect = stun;
+                effect.MultipleTime(effectTimeMultiX3);
                 break;
 
             case (ElemType.Kryo, ElemType.Kryo):
@@ -88,7 +88,7 @@ public class Aero : BaseElem
                 break;
 
             case (ElemType.Kryo, ElemType.Oxy):
-                Effect.MultipleTime(EffectTimeMultiX2);
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Kryo, ElemType.Geo):
@@ -96,13 +96,13 @@ public class Aero : BaseElem
                 break;
 
             case (ElemType.Kryo, ElemType.Aero):
-                Effect.MultipleTime(EffectTimeMultiX3);
+                effect.MultipleTime(effectTimeMultiX3);
                 break;
 
             case (ElemType.Geo, ElemType.H2O):
-                dmg.Types[ElemType.Aero] += 0.5f * DmgInn;
-                Effect = stun;
-                Effect.MultipleTime(EffectTimeMultiX3);
+                dmg.Types[ElemType.Aero] += 0.5f * dmgInn;
+                effect = stun;
+                effect.MultipleTime(effectTimeMultiX3);
                 break;
 
             case (ElemType.Geo, ElemType.Kryo):
@@ -110,34 +110,34 @@ public class Aero : BaseElem
                 break;
 
             case (ElemType.Null, ElemType.Pyro):
-                dmg.Types[ElemType.Aero] *= DmgMultiX2;
+                dmg.Types[ElemType.Aero] *= dmgMultiX2;
                 break;
 
             case (ElemType.Null, ElemType.H2O):
-                dmg.Types[ElemType.Aero] *= DmgMultiX2;
+                dmg.Types[ElemType.Aero] *= dmgMultiX2;
                 break;
 
             case (ElemType.Null, ElemType.Kryo):
-                dmg.Types[ElemType.Aero] *= DmgMultiX2;
+                dmg.Types[ElemType.Aero] *= dmgMultiX2;
                 break;
 
             case (ElemType.Null, ElemType.Geo):
-                dmg.Types[ElemType.Aero] *= DmgMultiX2;
+                dmg.Types[ElemType.Aero] *= dmgMultiX2;
                 break;
 
             case (ElemType.Null, ElemType.Null):
-                dmg.Types[_elemName] *= DmgMultiX2;
+                dmg.Types[_elemName] *= dmgMultiX2;
                 break;
 
             default:
                 Debug.Log("CantFire");
                 dmg.Types[_elemName] = 0;
-                Effect = null;
+                effect = null;
                 break;
 
 
         }
-        return (dmg, Effect);
+        return (dmg, effect);
     }
 
     

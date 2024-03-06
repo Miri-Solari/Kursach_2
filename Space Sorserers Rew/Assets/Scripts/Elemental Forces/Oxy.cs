@@ -14,7 +14,7 @@ public class Oxy : BaseElem
     public override (Damage, BaseEffect) InnLayer(ElemType midLayer, ElemType outLayer) // логика, когда внутренний слой
     {
         Damage dmg = new(pyro: 0);
-        dmg.Types[_elemName] += DmgInn;
+        dmg.Types[_elemName] += dmgInn;
         
         switch ((outLayer, midLayer))
         {
@@ -24,11 +24,11 @@ public class Oxy : BaseElem
 
             case (ElemType.Pyro, ElemType.Oxy):
                 _resistDebuff.ResistDurationMulti(_resistDurationMultiX2);
-                _resistDebuff.MultipleTime(EffectTimeMultiX2);
+                _resistDebuff.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Pyro, ElemType.Geo):
-                dmg.Types[ElemType.Geo] += 0.5f * DmgInn; 
+                dmg.Types[ElemType.Geo] += 0.5f * dmgInn; 
                 break;
 
             case (ElemType.Pyro, ElemType.Aero):
@@ -40,7 +40,7 @@ public class Oxy : BaseElem
                 break;
 
             case (ElemType.Geo, ElemType.Oxy):
-                _resistDebuff.MultipleTime(EffectTimeMultiX2);
+                _resistDebuff.MultipleTime(effectTimeMultiX2);
                 _resistDebuff.ResistDurationMulti(_resistDurationMultiX2);
                 break;
 
@@ -53,16 +53,16 @@ public class Oxy : BaseElem
                 break; 
 
             case (ElemType.H2O, ElemType.H2O):
-                _resistDebuff.MultipleTime(EffectTimeMultiX2);
-                dmg.Types[ElemType.Oxy] += 0.5f * DmgInn;
+                _resistDebuff.MultipleTime(effectTimeMultiX2);
+                dmg.Types[ElemType.Oxy] += 0.5f * dmgInn;
                 break;
 
             case (ElemType.H2O, ElemType.Kryo):
-                dmg.Types[ElemType.Kryo] += 0.5f * DmgInn; 
+                dmg.Types[ElemType.Kryo] += 0.5f * dmgInn; 
                 break;
 
             case (ElemType.H2O, ElemType.Oxy):
-                _resistDebuff.MultipleTime(EffectTimeMultiX2);
+                _resistDebuff.MultipleTime(effectTimeMultiX2);
                 _resistDebuff.ResistDurationMulti(_resistDurationMultiX2);
                 break;
 
@@ -71,11 +71,11 @@ public class Oxy : BaseElem
                 break;
 
             case (ElemType.H2O, ElemType.Aero):
-                dmg.Types[ElemType.Aero] += 0.5f * DmgInn;
+                dmg.Types[ElemType.Aero] += 0.5f * dmgInn;
                 break;
 
             case (ElemType.Kryo, ElemType.H2O):
-                dmg.Types[ElemType.Kryo] += DmgInn;
+                dmg.Types[ElemType.Kryo] += dmgInn;
                 break;
 
             case (ElemType.Kryo, ElemType.Kryo):
@@ -83,7 +83,7 @@ public class Oxy : BaseElem
                 break;
 
             case (ElemType.Kryo, ElemType.Oxy):
-                _resistDebuff.MultipleTime(EffectTimeMultiX2);
+                _resistDebuff.MultipleTime(effectTimeMultiX2);
                 _resistDebuff.ResistDurationMulti(_resistDurationMultiX2);
                 break;
 
@@ -104,35 +104,35 @@ public class Oxy : BaseElem
                 break;
 
             case (ElemType.Null, ElemType.Pyro):
-                dmg.Types[ElemType.Oxy] *= DmgMultiX2;
+                dmg.Types[ElemType.Oxy] *= dmgMultiX2;
                 break;
 
             case (ElemType.Null, ElemType.H2O):
-                dmg.Types[ElemType.Oxy] *= DmgMultiX2;
-                Effect.MultipleTime(EffectTimeMultiX2);
+                dmg.Types[ElemType.Oxy] *= dmgMultiX2;
+                effect.MultipleTime(effectTimeMultiX2);
                 break;
 
             case (ElemType.Null, ElemType.Kryo):
-                dmg.Types[ElemType.Oxy] *= DmgMultiX2;
+                dmg.Types[ElemType.Oxy] *= dmgMultiX2;
                 break;
 
             case (ElemType.Null, ElemType.Geo):
-                dmg.Types[ElemType.Oxy] *= DmgMultiX2;
+                dmg.Types[ElemType.Oxy] *= dmgMultiX2;
                 break;
 
             case (ElemType.Null, ElemType.Null):
-                dmg.Types[_elemName] *= DmgMultiX2;
+                dmg.Types[_elemName] *= dmgMultiX2;
                 break;
 
             default:
                 Debug.Log("CantFire");
                 dmg.Types[_elemName] = 0;
-                Effect = null;
+                effect = null;
                 break;
 
         }
-        Effect = _resistDebuff;
-        return (dmg, Effect);
+        effect = _resistDebuff;
+        return (dmg, effect);
     }
 
     

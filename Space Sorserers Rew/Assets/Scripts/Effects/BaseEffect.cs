@@ -3,15 +3,23 @@ using UnityEngine;
 
 public class BaseEffect : MonoBehaviour
 {
-    [SerializeField] protected float _time;
+    [SerializeField, Range(1, 10)] protected float _time;
     public EffectType _effectType { get; protected set; }
     protected GameObject target;
+    private float _baseTime = 0;
 
 
     protected virtual void Awake()
     {
+        _baseTime = _time;
         target = gameObject.transform.parent.gameObject;
-        if (EffectCollector.Instance != null ) EffectCollector.Instance.EffectCheck(this);
+        EffectCollector collector = target.GetComponent<BaseUnit>().GetEffectCollector();
+        if (collector != null ) collector.EffectCheck(this);
+        IEffectResistible temp = target.GetComponent<IEffectResistible>();
+        if (temp!= null)
+        {
+            _time *= temp.Resist.res[_effectType]/100f;
+        }
         StartCoroutine(LifeTime());
     }
 
@@ -25,6 +33,5 @@ public class BaseEffect : MonoBehaviour
     {
         _time *= y;
     }
-
 
 }

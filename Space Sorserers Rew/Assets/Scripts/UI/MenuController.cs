@@ -16,13 +16,13 @@ public class MenuController : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKey(ControlButton.MenuOpen) && menu != null)
+        if (Input.GetKeyDown(ControlButton.MenuOpen) && menu != null)
         {
             MenuControl();
         }
         
 
-        if (Input.GetKey(ControlButton.InventoryOpen) && inventory != null)
+        if (Input.GetKeyDown(ControlButton.InventoryOpen) && inventory != null)
         {
             InventoryControl();
         }
@@ -38,12 +38,13 @@ public class MenuController : MonoBehaviour
         if (_isMenuOpen)
         {
             menu.SetActive(false);
-            
+            Time.timeScale = 1f;
             _isMenuOpen = false;
         }
         else
         {
             menu.SetActive(true);
+            Time.timeScale = 0f;
             _isMenuOpen = true;
         }
         GameUIControl();
@@ -54,12 +55,13 @@ public class MenuController : MonoBehaviour
         if (!_isInventoryOpen)
         {
             _isInventoryOpen = true;
+            Time.timeScale = 0f;
             inventory.SetActive(true);
         }
         else
         {
             inventory.SetActive(false);
-
+            Time.timeScale = 1f;
             _isInventoryOpen = false;
         }
         GameUIControl();

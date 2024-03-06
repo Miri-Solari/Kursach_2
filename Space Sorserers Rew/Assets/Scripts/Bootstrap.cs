@@ -14,5 +14,6 @@ public class Bootstrap : MonoBehaviour
     {
         baseGun.Subscription();
         inventory.SlotIsChange();
+        
     }
 }

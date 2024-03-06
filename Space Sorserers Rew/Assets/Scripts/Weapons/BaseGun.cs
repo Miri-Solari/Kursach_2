@@ -18,7 +18,7 @@ public class BaseGun : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.timeScale != 0f)
         {
             OpenFire();
         }
@@ -48,6 +48,7 @@ public class BaseGun : MonoBehaviour
         ElemType midElemContainer = ElemType.Null;
         ElemType outElemContainer = ElemType.Null;
         ElemContainer temp = inventory.GetSlots();
+
         outLayer = temp.GetOutLayer();
         midLayer = temp.GetMidLayer();
         innLayer = temp.GetInnLayer();

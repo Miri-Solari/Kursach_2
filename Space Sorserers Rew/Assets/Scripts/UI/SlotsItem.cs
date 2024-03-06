@@ -9,7 +9,7 @@ public class SlotsItem : MonoBehaviour, IClickable
     [SerializeField] ItemType _itemType = ItemType.All;
     private bool _isTaken;
     private SlotsState _state;
-    private WaitForSeconds _delay;
+    private WaitForSecondsRealtime _delay;
     private GraphicRaycaster _caster;
     private PointerEventData _pointerEvent;
     private List<RaycastResult> _hitsTargets;
@@ -26,12 +26,13 @@ public class SlotsItem : MonoBehaviour, IClickable
         _pointerEvent.position = Input.mousePosition;
         _caster.Raycast(_pointerEvent, _hitsTargets);
         bool success = false;
+
         foreach (var item in _hitsTargets)
         {
             var temp = item.gameObject.GetComponent<Slot>();
             if (temp != null)
             {
-                if (!temp.IsFilled && temp.ItemType == _itemType)
+                if (!temp.IsFilled && temp.CanPutInto(_itemType))
                 {
                     if(item.gameObject.GetComponent<Slot>().ItemType == ItemType.Elem || transform.parent.GetComponent<Slot>().ItemType == ItemType.Elem)
                     {
@@ -52,13 +53,13 @@ public class SlotsItem : MonoBehaviour, IClickable
             transform.position = transform.parent.position;
             transform.localPosition = -_offset;
         }
-        Invoke(nameof(ChangeTake), 0.15f);
+        StartCoroutine(ChangeTake());
         _state = SlotsState.Chill;
 
         _hitsTargets.Clear();
     }
 
-    public void Remove()
+    public void Remove() // удаление из инвентаря(мб реализовать)
     {
         
     }
@@ -76,7 +77,7 @@ public class SlotsItem : MonoBehaviour, IClickable
     void Awake()
     {
         _state = SlotsState.Chill;
-        _delay = new WaitForSeconds(0.01f);
+        _delay = new WaitForSecondsRealtime(0.01f);
         _caster = transform.GetComponentInParent<GraphicRaycaster>();
         _pointerEvent = new(null);
         _hitsTargets = new();
@@ -102,8 +103,9 @@ public class SlotsItem : MonoBehaviour, IClickable
         yield return null;
     }
 
-    private void ChangeTake()
+    private IEnumerator ChangeTake()
     {
+        yield return new WaitForSecondsRealtime(0.1f);
         _isTaken = !_isTaken;
     }
 }

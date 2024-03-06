@@ -6,16 +6,21 @@ using UnityEngine;
 public class BaseElem : MonoBehaviour
 {
     [SerializeField] protected Stun stun;
-    [SerializeField] protected float DmgInn;
-    [SerializeField] protected float DmgMid;
-    [SerializeField] protected float DmgOut;
-    [SerializeField] protected float EffectTimeMultiX2;
-    [SerializeField] protected float EffectTimeMultiX3;
-    [SerializeField] protected float DmgMultiX2;
-    [SerializeField] protected float DmgMultiX3;
-    [SerializeField] protected BaseEffect Effect;
+    [SerializeField] protected float dmgInn;
+    [SerializeField] protected float dmgMid;
+    [SerializeField] protected float dmgOut;
+    [SerializeField] protected float effectTimeMultiX2;
+    [SerializeField] protected float effectTimeMultiX3;
+    [SerializeField] protected float dmgMultiX2;
+    [SerializeField] protected float dmgMultiX3;
+    [SerializeField] protected BaseEffect effect;
     public ElemType _elemName { get; protected set; }
 
+    private void Start()
+    {
+        effect = Instantiate(effect);
+        stun = Instantiate(stun);
+    }
 
     public virtual (Damage, BaseEffect) InnLayer(ElemType midLayer, ElemType outLayer)
     {
@@ -27,14 +32,14 @@ public class BaseElem : MonoBehaviour
     public virtual Damage MidLayer()
     {
         Damage dmg = new(pyro: 0);
-        dmg.Types[_elemName] += DmgMid;
+        dmg.Types[_elemName] += dmgMid;
         return dmg;
     }
 
     public virtual Damage OutLayer()
     {
         Damage dmg = new(pyro: 0);
-        dmg.Types[_elemName] += DmgOut;
+        dmg.Types[_elemName] += dmgOut;
         return dmg;
     }
 
