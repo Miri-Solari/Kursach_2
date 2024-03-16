@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
-    internal interface IResistable
+    public interface IResistable
     {
         internal Resistances Resist { get; set; }
     }

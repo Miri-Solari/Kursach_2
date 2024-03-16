@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Slot
+  - loadingDisks
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - PlayerBullet
   - 
   - 
   - 

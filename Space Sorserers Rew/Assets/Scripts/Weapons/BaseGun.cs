@@ -4,12 +4,12 @@ using UnityEngine;
 public class BaseGun : MonoBehaviour
 {
     [SerializeField] protected Transform shootPoint;
-
     [SerializeField] protected GameObject projectilePrefab;
     protected BaseElem outLayer;
     protected BaseElem midLayer;
     protected BaseElem innLayer;
     protected (Damage, BaseEffect) damageEffectContainer;
+    
     public virtual void Subscription() // стреляет
     {
         Inventory.Instance.SlotsChange += ChangeElem;
@@ -57,6 +57,7 @@ public class BaseGun : MonoBehaviour
         if (outLayer != null)
             outElemContainer = outLayer._elemName;
         damageEffectContainer = innLayer.InnLayer(midElemContainer, outElemContainer);
+
         if (midLayer != null) damageEffectContainer.Item1 += midLayer.MidLayer();
         if (outLayer!= null) damageEffectContainer.Item1 += outLayer.OutLayer();
     }

@@ -33,8 +33,8 @@ public class BaseUnit : MonoBehaviour, IDamagable, IFirable, ISlowable, IResistD
     [SerializeField] Res[] _resistanceArray;
 
     protected Resistances _resistances = new Resistances(pyro:1);
-    private float _startSpeed;
-    private Resistances _startResist;
+    protected float _startSpeed;
+    protected Resistances _startResist;
     private EffectCollector _collector;
     
     [SerializeField] protected float HP = 100;

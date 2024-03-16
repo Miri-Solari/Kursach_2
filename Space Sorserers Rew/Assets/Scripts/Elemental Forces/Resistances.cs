@@ -19,6 +19,20 @@ public struct Resistances
         };
     }
 
+    public static Resistances operator +(Resistances x, Resistances y)
+    {
+        Resistances result = new(pyro: 0);
+        float min;
+        float max;
+        foreach (var dmg in x.Types)
+        {
+            min = Mathf.Min(x.Types[dmg.Key], y.Types[dmg.Key]);
+            max = Mathf.Max(x.Types[dmg.Key], y.Types[dmg.Key]);
+            result.Types[dmg.Key] = max + min;
+        }
+        return result;
+    }
+
     public static Resistances operator *(Resistances x, float y)
     {
         Resistances result = new(pyro:0) ;

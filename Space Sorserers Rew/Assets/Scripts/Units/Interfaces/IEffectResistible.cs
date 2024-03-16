@@ -1,4 +1,4 @@
 ﻿public interface IEffectResistible
 {
-    EffectResist Resist { get; set; } 
+    EffectResist Resist { get; set; }
 }

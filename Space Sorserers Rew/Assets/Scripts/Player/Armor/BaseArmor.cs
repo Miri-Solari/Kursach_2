@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System;
 using UnityEngine;
 
@@ -9,11 +10,11 @@ public abstract class BaseArmor : MonoBehaviour
         public ElemType name;
         public float value;
     }
-    [SerializeField] Res[] _resistanceArray;
+    [SerializeField] protected Res[] _resistanceArray;
 
     protected Resistances _resistances = new Resistances(pyro: 1);
-    [SerializeField] ArmorEffect _armorEffect;
+    [SerializeField] protected ArmorEffect _armorEffect;
 
-    public abstract ArmorEffect GiveEffect();
+    public abstract void GiveEffect(IArmorAffectable targetArmor, IResistable targetResist);
 
 }
